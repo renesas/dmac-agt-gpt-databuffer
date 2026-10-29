@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.11" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README-dmac</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">:root {
+--brand: #2b0a8c;
+--accent: #e6007e;
+--ink: #1f2430;
+--muted: #667085;
+--line: #e4e7ec;
+--surface: #f7f7fb;
+}
+* {
+box-sizing: border-box;
+}
+html {
+scroll-behavior: smooth;
+}
+body {
+margin: 0 auto;
+max-width: 1120px;
+padding: 50px;
+color: var(--ink);
+background: #ffffff;
+font-family: "Segoe UI", Arial, sans-serif;
+line-height: 1.65;
+}
+a {
+color: var(--brand);
+}
+a:hover {
+color: var(--accent);
+}
+h1 {
+margin-top: 2.7rem;
+padding-bottom: 0.35rem;
+border-bottom: 2px solid var(--line);
+}
+h2 {
+margin-top: 2.4rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--line);
+}
+h3,
+h4,
+h5,
+h6 {
+margin-top: 2rem;
+}
+img {
+display: block;
+max-width: 100%;
+height: auto;
+margin: 1rem auto 0.35rem;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.25rem 0;
+}
+th,
+td {
+border: 1px solid var(--line);
+padding: 0.7rem;
+vertical-align: top;
+}
+th {
+background: var(--surface);
+text-align: left;
+}
+blockquote {
+margin: 1.2rem 0;
+padding: 0.7rem 1rem;
+border-left: 4px solid var(--brand);
+background: var(--surface);
+}
+code {
+font-family: Consolas, "Courier New", monospace;
+}
+pre {
+overflow-x: auto;
+padding: 1rem;
+border-radius: 8px;
+background: var(--surface);
+}
+
+body > h1:first-of-type {
+margin: -50px calc(50% - 50vw) 3rem;
+padding: 3.5rem max(50px, calc((100vw - 1120px) / 2));
+border: 0;
+background: linear-gradient(135deg, #250777, #3e16a3);
+color: #ffffff;
+font-size: clamp(2rem, 5vw, 3.5rem);
+line-height: 1.1;
+}
+@media (max-width: 640px) {
+body {
+padding: 20px;
+}
+body > h1:first-of-type {
+margin-top: -20px;
+padding: 2.5rem 20px;
+}
+}
+</style>
+</head>
+<body>
+<h1 id="dmac">DMAC</h1>
+<h2 id="overview">Overview</h2>
+<p>This Software Building Block (SBB) demonstrates basic Direct Memory
+Access Controller (DMAC) functionality on Renesas RA MCUs using Renesas
+FSP. The reference application creates three DMAC transfer use cases
+that show peripheral-triggered and software-triggered data movement
+without using the CPU to perform each individual data copy.</p>
+<p>This document covers only these reference boards:</p>
+<ul>
+<li>FPB-RA4E2</li>
+<li>FPB-RA6E2</li>
+<li>FPB-RA8E1</li>
+</ul>
+<p>The three demonstrated transfers are:</p>
+<ol type="1">
+<li>An AGT-triggered transfer from a source array to the I/O port
+control register, toggling an on-board LED 60 times.</li>
+<li>A software-triggered 32-bit transfer from the GPT counter register
+to a destination array, with transferred values printed to the
+terminal.</li>
+<li>A software-triggered repeat-mode transfer from a predefined source
+array to the I/O port control register, changing the LED state.</li>
+</ol>
+<h2 id="hardware-requirements">Hardware requirements</h2>
+<ul>
+<li>1 x FPB-RA4E2, FPB-RA6E2, or FPB-RA8E1</li>
+<li>1 x appropriate USB cable for programming, debugging, and the serial
+terminal connection</li>
+</ul>
+<p>Connect the board USB debug port to the host PC.</p>
+<h3 id="fpb-ra4e2">FPB-RA4E2</h3>
+<p>No additional board-specific hardware connection is identified for
+FPB-RA4E2 in the supplied <code>readme.txt</code>.</p>
+<h3 id="fpb-ra6e2">FPB-RA6E2</h3>
+<p>No additional board-specific hardware connection is identified for
+FPB-RA6E2 in the supplied <code>readme.txt</code>.</p>
+<h3 id="fpb-ra8e1">FPB-RA8E1</h3>
+<p>Open jumpers <strong>J6</strong> and <strong>J9</strong> to use the
+on-board debug functionality.</p>
+<h2 id="what-use-case-does-this-sbb-demonstrate">What use case does this
+SBB demonstrate?</h2>
+<p>The SBB demonstrates three different ways DMAC can move data between
+memory and peripheral registers.</p>
+<h3 id="1-peripheral-triggered-led-transfer">1. Peripheral-triggered LED
+transfer</h3>
+<p>Selecting menu option <code>1</code> runs
+<code>transfer_led_blink_operation()</code>.</p>
+<p>The operation:</p>
+<ol type="1">
+<li>Sets the DMAC source to <code>g_source_data</code>.</li>
+<li>Sets the destination to the board-specific I/O port
+<code>PCNTR1</code> register.</li>
+<li>Opens and enables <code>g_transfer_led_blink</code>.</li>
+<li>Opens and starts the AGT timer.</li>
+<li>Uses the AGT-generated activation events to drive the transfer.</li>
+<li>Waits until the DMAC callback sets
+<code>g_is_transfer_complete</code>.</li>
+</ol>
+<p>The source array contains 60 32-bit values, and the supplied
+documentation describes AGT as generating a 100 ms interrupt that
+triggers 60 transfers. The visible result is the on-board LED toggling
+60 times.</p>
+<h3 id="2-gpt-register-to-memory-transfer">2. GPT register-to-memory
+transfer</h3>
+<p>Selecting menu option <code>2</code> performs a software start of
+<code>g_transfer_gpt_value</code>.</p>
+<p>Before the user selects this option, the application configures the
+DMAC source as the GPT0 counter register:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span>R_GPT0<span class="op">-&gt;</span>GTCNT</span></code></pre></div>
+<p>and the destination as <code>g_dest_data</code>. GPT0 is opened and
+started and continues running. When option <code>2</code> is selected,
+the DMAC performs the configured transfer and the application prints
+entries from the destination array.</p>
+<h3 id="3-software-triggered-io-port-transfer">3. Software-triggered I/O
+port transfer</h3>
+<p>Selecting menu option <code>3</code> software-starts
+<code>g_transfer_write_ioport</code>.</p>
+<p>This instance is configured by the SBB to transfer data from
+<code>g_source_data</code> to the board-specific <code>PCNTR1</code>
+register. The source describes this transfer as repeat mode with
+software activation. Writing the prepared values to the port control
+register changes the LED state.</p>
+<h2 id="what-does-the-sbb-core-code-do">What does the SBB core code
+do?</h2>
+<p>The reusable SBB functionality is divided across three source
+groups.</p>
+<h3 id="dmac-transfer-operations">DMAC transfer operations</h3>
+<p><code>dmac_transfers.c</code> and <code>dmac_transfers.h</code>
+implement the three demonstrated operations:</p>
+<ul>
+<li><code>transfer_led_blink_operation()</code></li>
+<li><code>transfer_gpt_timer_operation()</code></li>
+<li><code>transfer_write_ioport_operation()</code></li>
+</ul>
+<p>This layer connects application-level operations to the corresponding
+DMAC configuration, source and destination addresses, timer resources,
+and board-specific port register.</p>
+<h3 id="dmac-initialization-and-primitive-operations">DMAC
+initialization and primitive operations</h3>
+<p><code>transfer_initialise.c</code> and
+<code>transfer_initialise.h</code> provide the lower-level reusable DMAC
+support:</p>
+<ul>
+<li>DMAC open and enable</li>
+<li>DMAC close</li>
+<li>Software-start of a transfer</li>
+<li>Source/destination address assignment</li>
+<li>Destination storage for GPT counter values</li>
+<li>Board-specific source data for LED control</li>
+<li>Printing of captured GPT transfer data</li>
+</ul>
+<h3 id="timer-initialization">Timer initialization</h3>
+<p><code>timer_initialise.c</code> and <code>timer_initialise.h</code>
+provide the timer support required by the transfer demonstrations:</p>
+<ul>
+<li>GPT open/start and close</li>
+<li>AGT open/start and close</li>
+</ul>
+<p>GPT supplies the changing counter-register data used by the second
+transfer. AGT supplies activation events for the first transfer.</p>
+<h2 id="demoreference-application-versus-reusable-sbb-code">Demo/reference
+application versus reusable SBB code</h2>
+<h3 id="reusable-sbb-code">Reusable SBB code</h3>
+<p>The reusable implementation is primarily:</p>
+<ul>
+<li><code>dmac_transfers.c</code></li>
+<li><code>dmac_transfers.h</code></li>
+<li><code>transfer_initialise.c</code></li>
+<li><code>transfer_initialise.h</code></li>
+<li><code>timer_initialise.c</code></li>
+<li><code>timer_initialise.h</code></li>
+</ul>
+<p>These files implement DMAC initialization, transfer setup, timer
+support, transfer operations, and board-specific LED-port handling.</p>
+<h3 id="demoreference-application-code">Demo/reference application
+code</h3>
+<p><code>dmac_example_app.c</code> and <code>dmac_example_app.h</code>
+provide the interactive reference application.</p>
+<p>The demo layer:</p>
+<ul>
+<li>Initializes the UART console.</li>
+<li>Reads the FSP version.</li>
+<li>Displays the SBB information and menu.</li>
+<li>Initializes the GPT-based and repeat-mode demonstrations.</li>
+<li>Processes menu selections <code>1</code>, <code>2</code>, and
+<code>3</code>.</li>
+<li>Prints GPT destination data.</li>
+<li>Reports errors and performs cleanup.</li>
+<li>Runs continuously waiting for terminal input.</li>
+</ul>
+<p>The demo entry point is:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dmac_example_app_run<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>It is intended to be called from <code>hal_entry.c</code>.</p>
+<p>Console interaction and menu handling are demonstration concerns
+rather than requirements of the underlying DMAC transfer functions.</p>
+<h2 id="which-public-functions-should-i-look-at-first">Which public
+functions should I look at first?</h2>
+<h3 id="transfer_led_blink_operation"><code>transfer_led_blink_operation()</code></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t transfer_led_blink_operation<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>The best starting point for the event-triggered DMAC example. It
+assigns the array and I/O-port addresses, initializes the DMAC transfer,
+starts AGT, and waits for the transfer-completion callback.</p>
+<h3 id="transfer_gpt_timer_operation"><code>transfer_gpt_timer_operation()</code></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t transfer_gpt_timer_operation<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Sets the GPT0 counter register as the source,
+<code>g_dest_data</code> as the destination, initializes the
+corresponding DMAC instance, and starts GPT0.</p>
+<h3 id="transfer_write_ioport_operation"><code>transfer_write_ioport_operation()</code></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t transfer_write_ioport_operation<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Configures the source array and board-specific I/O port register for
+the repeat-mode, software-activated transfer.</p>
+<h3 id="dmac_transfer_init"><code>dmac_transfer_init()</code></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t dmac_transfer_init<span class="op">(</span>dmac_instance_ctrl_t <span class="op">*</span> <span class="dt">const</span> p_transfer_ctl<span class="op">,</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                             transfer_cfg_t <span class="dt">const</span> <span class="op">*</span> <span class="dt">const</span> p_transfer_cfg<span class="op">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                             <span class="dt">uint8_t</span> transfer_unit<span class="op">);</span></span></code></pre></div>
+<p>Opens a DMAC instance with <code>R_DMAC_Open()</code> and enables its
+configured activation source with <code>R_DMAC_Enable()</code>.</p>
+<h3 id="dmac_transfer_software_start"><code>dmac_transfer_software_start()</code></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t dmac_transfer_software_start<span class="op">(</span>transfer_ctrl_t <span class="op">*</span> <span class="dt">const</span> p_transfer_ctrl<span class="op">);</span></span></code></pre></div>
+<p>Starts a configured DMAC instance using
+<code>R_DMAC_SoftwareStart()</code> with
+<code>TRANSFER_START_MODE_SINGLE</code>.</p>
+<h3 id="set_transfer_dst_src_address"><code>set_transfer_dst_src_address()</code></h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> set_transfer_dst_src_address<span class="op">(</span>transfer_cfg_t <span class="dt">const</span> <span class="op">*</span> <span class="dt">const</span> p_config<span class="op">,</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="dt">void</span> <span class="dt">const</span> <span class="op">*</span> <span class="dt">volatile</span> p_src<span class="op">,</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="dt">void</span> <span class="dt">const</span> <span class="op">*</span> <span class="dt">volatile</span> p_dest<span class="op">);</span></span></code></pre></div>
+<p>Assigns the source and destination addresses in the transfer
+configuration before the DMAC instance is opened.</p>
+<h3 id="gpt_timer_init-and-agt_timer_init"><code>gpt_timer_init()</code>
+and <code>agt_timer_init()</code></h3>
+<p>These functions open and start the generated GPT and AGT instances
+used by the demonstrations.</p>
+<h2 id="configuration-assumptions-for-the-reference-boards">Configuration
+assumptions for the reference boards</h2>
+<h3 id="three-generated-dmac-instances">Three generated DMAC
+instances</h3>
+<p>The SBB expects three generated DMAC configurations:</p>
+<ul>
+<li><code>g_transfer_led_blink</code></li>
+<li><code>g_transfer_gpt_value</code></li>
+<li><code>g_transfer_write_ioport</code></li>
+</ul>
+<p>The first supports timer-triggered LED control, the second captures
+GPT counter data, and the third supports a software-triggered
+repeat-mode I/O-port transfer.</p>
+<h3 id="transfer-data-sizes">Transfer data sizes</h3>
+<p>The SBB declares:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SOURCE_DATA_SIZE </span><span class="op">(</span><span class="dv">60</span><span class="bu">U</span><span class="op">)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DEST_DATA_SIZE   </span><span class="op">(</span><span class="dv">16</span><span class="bu">U</span><span class="op">)</span></span></code></pre></div>
+<p><code>g_source_data</code> therefore contains 60 board-specific
+32-bit values, while <code>g_dest_data</code> holds 16 32-bit
+values.</p>
+<h3 id="board-specific-io-port-registers">Board-specific I/O port
+registers</h3>
+<p>The SBB writes directly to an I/O port <code>PCNTR1</code> register.
+For the requested reference boards:</p>
+<table>
+<thead>
+<tr>
+<th>Board</th>
+<th>I/O port control register</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FPB-RA4E2</td>
+<td><code>R_PORT2-&gt;PCNTR1</code></td>
+</tr>
+<tr>
+<td>FPB-RA6E2</td>
+<td><code>R_PORT2-&gt;PCNTR1</code></td>
+</tr>
+<tr>
+<td>FPB-RA8E1</td>
+<td><code>R_PORT4-&gt;PCNTR1</code></td>
+</tr>
+</tbody>
+</table>
+<p>The implementation describes <code>PCNTR1</code> as a 32-bit register
+where bits <code>[15:0]</code> control pin direction and bits
+<code>[31:16]</code> control output level.</p>
+<h3 id="board-specific-source-data">Board-specific source data</h3>
+<p>FPB-RA4E2 and FPB-RA6E2 use the same 60-element LED source-data
+sequence in the supplied code, alternating:</p>
+<pre class="text"><code>0x00000080
+0x00800080</code></pre>
+<p>FPB-RA8E1 uses a separate sequence alternating:</p>
+<pre class="text"><code>0x00000010
+0x00100010</code></pre>
+<p>These values are coupled to the port register and LED configuration
+used by the reference boards.</p>
+<h3 id="gpt-source-register">GPT source register</h3>
+<p>The GPT-transfer demonstration explicitly uses:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>R_GPT0<span class="op">-&gt;</span>GTCNT</span></code></pre></div>
+<p>as the source register.</p>
+<h3 id="agt-timing">AGT timing</h3>
+<p>The supplied <code>readme.txt</code> describes the AGT source as
+generating an interrupt every <strong>100 ms</strong> for the
+LED-transfer demonstration. The SBB performs 60 transfers, and the
+reference application tells the user to wait 6 seconds while that
+operation is running.</p>
+<h2 id="what-must-i-change-for-another-configuration">What must I change
+for another configuration?</h2>
+<h3 id="board-and-led-port">Board and LED port</h3>
+<p>The LED transfer is coupled directly to a board-specific
+<code>PCNTR1</code> register and to values in
+<code>g_source_data</code>. Changing the LED pin or port therefore
+requires the destination register and corresponding source data to be
+reviewed together.</p>
+<p>For the three documented boards, the existing implementation
+explicitly selects Port 2 for FPB-RA4E2/FPB-RA6E2 and Port 4 for
+FPB-RA8E1.</p>
+<h3 id="dmac-source-and-destination">DMAC source and destination</h3>
+<p>The SBB assigns source and destination pointers before opening the
+transfer interface because the code states that opening the transfer
+will fail if those addresses are not set first.</p>
+<p>If the transferred resource changes, update the source/destination
+selection to the addresses required by that use case and ensure that the
+generated DMAC configuration matches it.</p>
+<h3 id="activation-source-and-transfer-mode">Activation source and
+transfer mode</h3>
+<p>The demonstrations use both peripheral activation and software
+activation. The transfer mode and activation source are part of the
+generated DMAC configuration. They must remain consistent with the
+intended transfer sequence.</p>
+<h3 id="timers-and-clocks">Timers and clocks</h3>
+<p>The source uses generated GPT (<code>g_gpt_ctrl</code>,
+<code>g_gpt_cfg</code>) and AGT (<code>g_agt_ctrl</code>,
+<code>g_agt_cfg</code>) configurations. The supplied files do not state
+the timer clock source, divider, or clock-tree configuration for
+FPB-RA4E2, FPB-RA6E2, or FPB-RA8E1. If the target’s clock configuration
+changes, validate the generated timer configuration and the required
+activation timing.</p>
+<h3 id="timing">Timing</h3>
+<p>The documented AGT-triggered example uses a 100 ms trigger and 60
+transfers. If the application requires a different transfer rate or
+count, the AGT and DMAC transfer configuration must be changed
+consistently.</p>
+<h3 id="memory">Memory</h3>
+<p>The supplied implementation has a 60-element 32-bit source array and
+a 16-element 32-bit destination array. The source files do not provide
+an overall RAM/ROM footprint for the SBB.</p>
+<h3 id="task-priorities">Task priorities</h3>
+<p>The supplied implementation does not define an RTOS or task
+priorities. <code>transfer_led_blink_operation()</code> waits in a
+foreground busy loop until the transfer callback changes
+<code>g_is_transfer_complete</code>. An RTOS-based integration must
+define its own scheduling requirements.</p>
+<h3 id="console-setup">Console setup</h3>
+<p>The UART console is used by the demonstration for menu input and
+output. It is not used by the DMAC hardware to perform the transfers. If
+the demo UI is removed, the integrating application can invoke the
+reusable transfer functions through its own control path.</p>
+<h2 id="dependencies">Dependencies</h2>
+<h3 id="renesas-fsp-dmac-driver">Renesas FSP DMAC driver</h3>
+<p>The SBB directly uses:</p>
+<ul>
+<li><code>R_DMAC_Open()</code></li>
+<li><code>R_DMAC_Enable()</code></li>
+<li><code>R_DMAC_SoftwareStart()</code></li>
+<li><code>R_DMAC_Close()</code></li>
+</ul>
+<h3 id="renesas-fsp-timers">Renesas FSP timers</h3>
+<p>The demonstrations use:</p>
+<ul>
+<li><code>R_AGT_Open()</code></li>
+<li><code>R_AGT_Start()</code></li>
+<li><code>R_AGT_Close()</code></li>
+<li><code>R_GPT_Open()</code></li>
+<li><code>R_GPT_Start()</code></li>
+<li><code>R_GPT_Close()</code></li>
+</ul>
+<h3 id="hardware-registers-and-io">Hardware registers and I/O</h3>
+<p>The implementation accesses:</p>
+<ul>
+<li><code>R_GPT0-&gt;GTCNT</code></li>
+<li><code>R_PORT2-&gt;PCNTR1</code> for FPB-RA4E2 and FPB-RA6E2</li>
+<li><code>R_PORT4-&gt;PCNTR1</code> for FPB-RA8E1</li>
+</ul>
+<h3 id="generated-fsp-configuration">Generated FSP configuration</h3>
+<p>The handwritten SBB source depends on objects exposed through
+<code>hal_data.h</code>, including the three DMAC configurations and the
+AGT/GPT configurations.</p>
+<h3 id="consolereference-application">Console/reference application</h3>
+<p>The demo uses:</p>
+<ul>
+<li><code>console/uart_console.h</code></li>
+<li><code>uart_console_init()</code></li>
+<li><code>uart_console_has_char()</code></li>
+<li><code>uart_console_flush()</code></li>
+<li><code>printf()</code></li>
+<li><code>fgets()</code></li>
+<li><code>atoi()</code></li>
+<li><code>memset()</code></li>
+<li><code>strcspn()</code></li>
+<li><code>R_FSP_VersionGet()</code></li>
+</ul>
+<h2 id="serial-terminal-configuration">Serial terminal
+configuration</h2>
+<p>The original README specifies:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Port</td>
+<td>Port provided by J-Link On-Board</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>115200</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>8 bit</td>
+</tr>
+<tr>
+<td>Parity</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Stop bits</td>
+<td>1 bit</td>
+</tr>
+<tr>
+<td>Flow control</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p>For Tera Term, it additionally specifies:</p>
+<ul>
+<li>Receive newline: <strong>CR</strong></li>
+<li>Transmit newline: <strong>CR</strong></li>
+<li><strong>Local echo</strong> enabled</li>
+</ul>
+<h2 id="demonstrated-behavior-and-performance">Demonstrated behavior and
+performance</h2>
+<h3 id="functional-behavior-demonstrated">Functional behavior
+demonstrated</h3>
+<p>The supplied application demonstrates:</p>
+<ul>
+<li>Opening and enabling three DMAC transfer instances.</li>
+<li>Peripheral-triggered DMAC operation using AGT.</li>
+<li>Software-triggered DMAC operation.</li>
+<li>Normal-mode transfer to an I/O port register.</li>
+<li>Repeat-mode transfer to an I/O port register.</li>
+<li>32-bit transfer from the GPT counter register to memory.</li>
+<li>Direct DMAC writes to an I/O port control register to change an LED
+state.</li>
+<li>Transfer-completion notification through the DMAC callback.</li>
+</ul>
+<h3 id="demonstrated-timing">Demonstrated timing</h3>
+<p>For the LED-blink transfer, the README specifies a <strong>100 ms AGT
+interrupt</strong> and <strong>60 transfers</strong>. The reference
+application labels that operation as requiring a <strong>6
+second</strong> wait.</p>
+<h3 id="known-behavior">Known behavior</h3>
+<p>The README notes that on starting or resetting a board, the DMAC
+transfer can sometimes take longer, causing LED blinking to decrease in
+frequency or pause. It instructs the user to reset the board if this
+occurs.</p>
+<h3 id="performance-measurements">Performance measurements</h3>
+<p>The supplied files do not provide measured DMAC throughput, bus
+utilization, CPU utilization, interrupt latency, memory footprint,
+jitter, or transfer latency. The 100 ms trigger period and 60-transfer
+example describe the configured demonstration, not a DMAC performance
+limit.</p>
+<p>This SBB should therefore be treated as a functional DMAC reference
+rather than a performance benchmark.</p>
+<h2 id="file-ownership-and-modification-guidance">File ownership and
+modification guidance</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>File</th>
+<th>Classification</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dmac_transfers.c</code></td>
+<td>Reusable SBB transfer operations</td>
+<td>Modify when intentionally changing the demonstrated DMAC
+source/destination resources or transfer behavior. Board-specific
+destination-register selection is here.</td>
+</tr>
+<tr>
+<td><code>dmac_transfers.h</code></td>
+<td>Reusable SBB transfer interface</td>
+<td>Modify when changing the public high-level transfer operations.</td>
+</tr>
+<tr>
+<td><code>transfer_initialise.c</code></td>
+<td>Reusable SBB DMAC support and board presets</td>
+<td>Contains DMAC wrappers, buffers, and board-specific LED source data.
+Modify carefully because the data values are coupled to board I/O
+configuration.</td>
+</tr>
+<tr>
+<td><code>transfer_initialise.h</code></td>
+<td>Reusable SBB DMAC interface/constants</td>
+<td>Defines transfer IDs, menu operation IDs, buffer sizes, and
+primitive DMAC functions.</td>
+</tr>
+<tr>
+<td><code>timer_initialise.c</code></td>
+<td>Reusable timer support</td>
+<td>Modify if the SBB’s AGT/GPT initialization and cleanup behavior must
+change.</td>
+</tr>
+<tr>
+<td><code>timer_initialise.h</code></td>
+<td>Reusable timer interface</td>
+<td>Public declarations for the SBB timer helpers.</td>
+</tr>
+<tr>
+<td><code>dmac_example_app.c</code></td>
+<td>Demo/reference application</td>
+<td>Appropriate location for menu flow, terminal interaction,
+demonstration sequencing, and demo error handling.</td>
+</tr>
+<tr>
+<td><code>dmac_example_app.h</code></td>
+<td>Demo/reference application interface</td>
+<td>Contains the demo entry point and presentation/menu constants.</td>
+</tr>
+<tr>
+<td><code>readme.txt</code></td>
+<td>Existing example documentation</td>
+<td>Source of supported-board, hardware, known-behavior, and terminal
+information.</td>
+</tr>
+</tbody>
+</table>
+<p>The SBB also depends on generated FSP content through
+<code>hal_data.h</code>. The provided file set does not enumerate those
+generated files, so individual generated files are not classified
+here.</p>
+<h2 id="what-happens-if-i-modify-the-sbb-and-later-adopt-a-newer-release">What
+happens if I modify the SBB and later adopt a newer release?</h2>
+<p>Local changes to the reusable SBB files can overlap changes delivered
+by a later SBB release. This is particularly important for this building
+block because board-specific register selection and board-specific LED
+source sequences are present in the reusable source.</p>
+<p>To reduce upgrade conflicts:</p>
+<ul>
+<li>Keep terminal menus, messages, and other demonstration behavior in
+<code>dmac_example_app.*</code>.</li>
+<li>Prefer representing timer and DMAC configuration in the generated
+FSP configuration when the configuration belongs there.</li>
+<li>Keep unavoidable board-specific changes to
+<code>dmac_transfers.c</code> and <code>transfer_initialise.c</code>
+focused and documented.</li>
+<li>Keep generated FSP content separate from hand-maintained SBB
+source.</li>
+<li>When updating the SBB, compare the new reusable files with locally
+modified versions before carrying local changes forward.</li>
+<li>Revalidate DMAC source/destination addresses, board port-register
+selection, LED source-data values, AGT activation, GPT register capture,
+transfer modes, and callback completion after merging an update.</li>
+</ul>
+<p>The supplied files do not define an automated source-migration or
+compatibility mechanism for future SBB versions. Compatibility after an
+update therefore needs to be validated by the integrating project.</p>
+<h2 id="recommended-reading-order">Recommended reading order</h2>
+<ol type="1">
+<li><strong><code>dmac_transfers.h</code></strong> to understand the
+three high-level SBB operations.</li>
+<li><strong><code>dmac_transfers.c</code></strong> to see how each
+operation combines DMAC, timers, buffers, and board-specific port
+registers.</li>
+<li><strong><code>transfer_initialise.h</code></strong> to understand
+transfer identifiers, data sizes, and the lower-level DMAC API.</li>
+<li><strong><code>transfer_initialise.c</code></strong> to see DMAC
+initialization, software start, address assignment, destination data,
+and board-specific source arrays.</li>
+<li><strong><code>timer_initialise.h</code></strong> and
+<strong><code>timer_initialise.c</code></strong> to understand the AGT
+and GPT dependencies.</li>
+<li><strong><code>dmac_example_app.c</code></strong> to see how the
+three operations are exercised from the terminal menu.</li>
+<li><strong><code>dmac_example_app.h</code></strong> for the demo entry
+point and menu/information strings.</li>
+<li><strong><code>readme.txt</code></strong> for the original hardware
+and terminal notes.</li>
+</ol>
+</body>
+</html>
